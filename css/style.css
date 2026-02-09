@@ -1,45 +1,102 @@
-diff --git a/css/style.css b/css/style.css
-index df9cceef59bfef5b50b8d790eba7037f6880c9c6..3fda0f6b4760cd304a42f72f36905db5fabcceda 100644
---- a/css/style.css
-+++ b/css/style.css
-@@ -1,5 +1,37 @@
-+/*
-+  Alteração: estilos migrados do bloco inline de index.html para este arquivo.
-+  Objetivo: manter o mesmo visual (tema escuro, grade e botões) com CSS centralizado.
-+*/
-+
-+/* Tema geral da página */
- body {
--  background-color: #111;
--  color: #fff;
--  font-family: Arial, sans-serif;
-+  background: #111;
-+  color: white;
-+  text-align: center;
-+  font-family: Arial;
-+}
-+
-+/* Grade de pixels */
-+#grid {
-+  display: grid;
-+  grid-template-columns: repeat(100, 15px);
-+  gap: 1px;
-+  justify-content: center;
-+  margin-top: 10px;
-+}
-+
-+/* Célula individual da grade */
-+.pixel {
-+  width: 15px;
-+  height: 15px;
-+  background-color: white;
-+  cursor: pointer;
-+}
-+
-+/* Botão de reset */
-+button {
-+  margin: 10px;
-+  padding: 10px 20px;
-+  font-size: 16px;
-+  cursor: pointer;
- }
+body {
+  background: #111;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+}
+
+.app {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.controls {
+  margin: 20px 0;
+  padding: 15px;
+  background: #222;
+  border-radius: 8px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.controls label {
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+#colorPicker {
+  width: 60px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#gridSize {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #555;
+  background: #333;
+  color: white;
+  cursor: pointer;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  background: #ff4d4d;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #ff3333;
+}
+
+#newGridBtn {
+  background: #4d94ff;
+}
+
+#newGridBtn:hover {
+  background: #3380ff;
+}
+
+.hint {
+  font-size: 12px;
+  color: #888;
+  margin: 10px 0;
+}
+
+#grid {
+  display: inline-grid;
+  gap: 1px;
+  background: #000;
+  padding: 10px;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.pixel {
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  cursor: crosshair;
+  transition: background-color 0.05s;
+}
+
+.pixel:hover {
+  opacity: 0.8;
+}
