@@ -1,92 +1,91 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="css/style.css">
-    <meta charset="UTF-8">
-    <title>Desenho por Cliques</title>
-    <style>
-        body {
-            background: #111;
-            color: white;
-            text-align: center;
-            font-family: Arial;
-        }
-
-        #grid {
-            display: grid;
-            grid-template-columns: repeat(100, 15px);
-            gap: 1px;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .pixel {
-            width: 15px;
-            height: 15px;
-            background-color: white;
-            cursor: pointer;
-        }
-        
-        button {
-            margin: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <h1>Desenhe clicando 🎨</h1>
-    <button id="resetBtn">Reset</button>
-    <div id="grid"></div>
-    <script src="js/script.js"></script>
-
-
-    <script>
-        // Elementos do DOM
-        const grid = document.getElementById("grid");
-        const resetButton = document.getElementById("resetBtn");
-        
-        // Configurações
-        const cores = ["white", "gray", "red", "blue", "green"];
-        const totalPixels = 4500; // 100 x 45 = 4500
-        
-        // Criar a grade de pixels
-        function criarGrid() {
-            grid.innerHTML = ""; // Limpa a grade
-            
-            for (let i = 0; i < totalPixels; i++) {
-                const pixel = document.createElement("div");
-                pixel.className = "pixel";
-                pixel.style.backgroundColor = cores[0]; // Começa com branco
-                pixel.setAttribute('data-pos', '0'); // Posição inicial no array
-                
-                // Adiciona evento de clique para mudar a cor
-                pixel.addEventListener('click', function() {
-                    let pos = parseInt(this.getAttribute('data-pos'));
-                    pos = (pos + 1) % cores.length; // Avança para próxima cor
-                    this.style.backgroundColor = cores[pos];
-                    this.setAttribute('data-pos', pos.toString());
-                });
-                
-                grid.appendChild(pixel);
-            }
-        }
-        
-        // Função para resetar a grade
-        function resetGrid() {
-            const pixels = document.querySelectorAll('.pixel');
-            pixels.forEach(pixel => {
-                pixel.style.backgroundColor = cores[0];
-                pixel.setAttribute('data-pos', '0');
-            });
-        }
-        
-        // Inicializar a grade quando a página carregar
-        document.addEventListener('DOMContentLoaded', criarGrid);
-        
-        // Configurar botão de reset
-        resetButton.addEventListener('click', resetGrid);
-    </script>
-</body>
-</html>
+ <!DOCTYPE html>
+ <html>
+ <head>
++    <!-- Estilos movidos para css/style.css para centralizar a apresentação -->
+     <link rel="stylesheet" href="css/style.css">
+     <meta charset="UTF-8">
+     <title>Desenho por Cliques</title>
+-    <style>
+-        body {
+-            background: #111;
+-            color: white;
+-            text-align: center;
+-            font-family: Arial;
+-        }
+-
+-        #grid {
+-            display: grid;
+-            grid-template-columns: repeat(100, 15px);
+-            gap: 1px;
+-            justify-content: center;
+-            margin-top: 10px;
+-        }
+-
+-        .pixel {
+-            width: 15px;
+-            height: 15px;
+-            background-color: white;
+-            cursor: pointer;
+-        }
+-        
+-        button {
+-            margin: 10px;
+-            padding: 10px 20px;
+-            font-size: 16px;
+-            cursor: pointer;
+-        }
+-    </style>
+ </head>
+ <body>
+     <h1>Desenhe clicando 🎨</h1>
+     <button id="resetBtn">Reset</button>
+     <div id="grid"></div>
+     <script src="js/script.js"></script>
+ 
+ 
+     <script>
+         // Elementos do DOM
+         const grid = document.getElementById("grid");
+         const resetButton = document.getElementById("resetBtn");
+         
+         // Configurações
+         const cores = ["white", "gray", "red", "blue", "green"];
+         const totalPixels = 4500; // 100 x 45 = 4500
+         
+         // Criar a grade de pixels
+         function criarGrid() {
+             grid.innerHTML = ""; // Limpa a grade
+             
+             for (let i = 0; i < totalPixels; i++) {
+                 const pixel = document.createElement("div");
+                 pixel.className = "pixel";
+                 pixel.style.backgroundColor = cores[0]; // Começa com branco
+@@ -67,26 +38,26 @@
+                     pos = (pos + 1) % cores.length; // Avança para próxima cor
+                     this.style.backgroundColor = cores[pos];
+                     this.setAttribute('data-pos', pos.toString());
+                 });
+                 
+                 grid.appendChild(pixel);
+             }
+         }
+         
+         // Função para resetar a grade
+         function resetGrid() {
+             const pixels = document.querySelectorAll('.pixel');
+             pixels.forEach(pixel => {
+                 pixel.style.backgroundColor = cores[0];
+                 pixel.setAttribute('data-pos', '0');
+             });
+         }
+         
+         // Inicializar a grade quando a página carregar
+         document.addEventListener('DOMContentLoaded', criarGrid);
+         
+         // Configurar botão de reset
+         resetButton.addEventListener('click', resetGrid);
+     </script>
+ </body>
+-</html>
+\ No newline at end of file
++</html>
