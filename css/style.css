@@ -1,5 +1,45 @@
-body {
-  background-color: #111;
-  color: #fff;
-  font-family: Arial, sans-serif;
-}
+diff --git a/css/style.css b/css/style.css
+index df9cceef59bfef5b50b8d790eba7037f6880c9c6..3fda0f6b4760cd304a42f72f36905db5fabcceda 100644
+--- a/css/style.css
++++ b/css/style.css
+@@ -1,5 +1,37 @@
++/*
++  Alteração: estilos migrados do bloco inline de index.html para este arquivo.
++  Objetivo: manter o mesmo visual (tema escuro, grade e botões) com CSS centralizado.
++*/
++
++/* Tema geral da página */
+ body {
+-  background-color: #111;
+-  color: #fff;
+-  font-family: Arial, sans-serif;
++  background: #111;
++  color: white;
++  text-align: center;
++  font-family: Arial;
++}
++
++/* Grade de pixels */
++#grid {
++  display: grid;
++  grid-template-columns: repeat(100, 15px);
++  gap: 1px;
++  justify-content: center;
++  margin-top: 10px;
++}
++
++/* Célula individual da grade */
++.pixel {
++  width: 15px;
++  height: 15px;
++  background-color: white;
++  cursor: pointer;
++}
++
++/* Botão de reset */
++button {
++  margin: 10px;
++  padding: 10px 20px;
++  font-size: 16px;
++  cursor: pointer;
+ }
