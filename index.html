@@ -106,6 +106,7 @@
             <option value="16">16 x 16</option>
             <option value="32" selected>32 x 32</option>
             <option value="48">48 x 48</option>
+            <option value="100x48">100 x 48</option>
         </select>
         
         <button id="newGridBtn">Aplicar grade</button>
@@ -133,33 +134,37 @@
         });
 
         // Função que cria a grade de pixels
-        function criarGrid(tamanho = 32) {
-            grid.innerHTML = ""; // Limpa tudo
-            grid.style.gridTemplateColumns = `repeat(${tamanho}, 15px)`;
-            
-            const totalPixels = tamanho * tamanho;
-            
-            for (let i = 0; i < totalPixels; i++) {
-                const pixel = document.createElement("div");
-                pixel.className = "pixel";
-                
-                // Quando clicar no pixel
-                pixel.addEventListener("mousedown", (e) => {
-                    e.preventDefault();
-                    isDrawing = true;
-                    pixel.style.backgroundColor = currentColor;
-                });
-                
-                // Quando arrastar sobre o pixel
-                pixel.addEventListener("mouseenter", () => {
-                    if (isDrawing) {
-                        pixel.style.backgroundColor = currentColor;
-                    }
-                });
-                
-                grid.appendChild(pixel);
+function criarGrid(dimensoes = "32x32") {
+    grid.innerHTML = ""; // Limpa tudo
+    
+    // Separa largura e altura (ex: "100x48" vira [100, 48])
+    const [largura, altura] = dimensoes.split("x").map(Number);
+    
+    grid.style.gridTemplateColumns = `repeat(${largura}, 15px)`;
+    
+    const totalPixels = largura * altura;
+    
+    for (let i = 0; i < totalPixels; i++) {
+        const pixel = document.createElement("div");
+        pixel.className = "pixel";
+        
+        // Quando clicar no pixel
+        pixel.addEventListener("mousedown", (e) => {
+            e.preventDefault();
+            isDrawing = true;
+            pixel.style.backgroundColor = currentColor;
+        });
+        
+        // Quando arrastar sobre o pixel
+        pixel.addEventListener("mouseenter", () => {
+            if (isDrawing) {
+                pixel.style.backgroundColor = currentColor;
             }
-        }
+        });
+        
+        grid.appendChild(pixel);
+    }
+}
 
         // Para de desenhar quando soltar o mouse
         document.addEventListener("mouseup", () => {
@@ -176,12 +181,12 @@
 
         // Botão de aplicar nova grade
         newGridBtn.addEventListener("click", () => {
-            const tamanho = parseInt(gridSizeSelect.value);
-            criarGrid(tamanho);
-        });
+    const dimensoes = gridSizeSelect.value;
+    criarGrid(dimensoes);
+});
 
-        // Cria a grade quando a página carregar
-        criarGrid(32);
+// Cria a grade quando a página carregar
+criarGrid("32x32");
     </script>
 </body>
 </html>
