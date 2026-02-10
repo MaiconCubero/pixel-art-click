@@ -77,9 +77,9 @@ Sem bibliotecas externas.
 
 ## Próximos Passos (Ideias)
 
-- Exportar o desenho como imagem (PNG)
+- Exportar o desenho como imagem (PNG)✅ ( Em teste 90% completo )
 - Salvar e carregar desenhos
-- Paleta de cores personalizada
+- Paleta de cores personalizada✅ aplicado
 - Ajuste dinâmico do tamanho do pixel
 - Suporte a mobile/touch
 
