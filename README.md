@@ -31,7 +31,7 @@ Com o tempo, o projeto ganhou novas funcionalidades e se tornou uma pequena ferr
 -  Botão para aplicar uma nova grade
 -  Botão para limpar todo o desenho
 -  Interface simples e intuitiva
-
+- Botão de Salvar desenho
 ---
 
 ## Tecnologias Utilizadas
@@ -64,12 +64,14 @@ Sem bibliotecas externas.
   - Separação de HTML, CSS e JavaScript
   - Organização do código
   - Melhoria na legibilidade
+  - Corrigido Bug de alteração de cor, ao trocar de cor o primeiro Click ainda coloria com a cor anterior.
 
 - **Versão atual**
   - Seletor de cores
   - Grades dinâmicas
   - Desenho com clique e arraste
   - Interface mais amigável
+  - Botão de Salvar Desenho
 
 ---
 
