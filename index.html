@@ -1,92 +1,187 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <link rel="stylesheet" href="css/style.css">
     <meta charset="UTF-8">
-    <title>Desenho por Cliques</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Art Click</title>
     <style>
         body {
             background: #111;
             color: white;
             text-align: center;
-            font-family: Arial;
+            font-family: Arial, sans-serif;
+            padding: 20px;
         }
-
-        #grid {
-            display: grid;
-            grid-template-columns: repeat(100, 15px);
-            gap: 1px;
-            justify-content: center;
-            margin-top: 10px;
+        
+        h1 {
+            margin-bottom: 20px;
         }
-
-        .pixel {
-            width: 15px;
-            height: 15px;
-            background-color: white;
+        
+        .controls {
+            margin: 20px 0;
+            padding: 15px;
+            background: #222;
+            border-radius: 8px;
+        }
+        
+        .controls label {
+            margin: 0 10px;
+        }
+        
+        #colorPicker {
+            width: 60px;
+            height: 40px;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
+            margin: 0 10px;
+        }
+        
+        #gridSize {
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 4px;
+            background: #333;
+            color: white;
+            border: 1px solid #555;
+            cursor: pointer;
+            margin: 0 10px;
         }
         
         button {
             margin: 10px;
             padding: 10px 20px;
-            font-size: 16px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
+            color: white;
+        }
+        
+        #newGridBtn {
+            background: #4d94ff;
+        }
+        
+        #resetBtn {
+            background: #ff4d4d;
+        }
+        
+        button:hover {
+            opacity: 0.8;
+        }
+        
+        .hint {
+            font-size: 12px;
+            color: #888;
+            margin: 10px 0;
+        }
+        
+        #grid {
+            display: inline-grid;
+            grid-template-columns: repeat(32, 15px);
+            gap: 1px;
+            background: #000;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        
+        .pixel {
+            width: 15px;
+            height: 15px;
+            background-color: white;
+            cursor: crosshair;
         }
     </style>
 </head>
 <body>
     <h1>Desenhe clicando 🎨</h1>
-    <button id="resetBtn">Reset</button>
+    
+    <div class="controls">
+        <label for="colorPicker">Cor:</label>
+        <input id="colorPicker" type="color" value="#ff4d4d">
+        
+        <label for="gridSize">Tamanho:</label>
+        <select id="gridSize">
+            <option value="16">16 x 16</option>
+            <option value="32" selected>32 x 32</option>
+            <option value="48">48 x 48</option>
+        </select>
+        
+        <button id="newGridBtn">Aplicar grade</button>
+        <button id="resetBtn">Limpar</button>
+    </div>
+    
+    <p class="hint">Dica: clique e arraste para pintar vários pixels.</p>
     <div id="grid"></div>
-    <script src="js/script.js"></script>
-
 
     <script>
-        // Elementos do DOM
+        // Pega os elementos da página
         const grid = document.getElementById("grid");
-        const resetButton = document.getElementById("resetBtn");
-        
-        // Configurações
-        const cores = ["white", "gray", "red", "blue", "green"];
-        const totalPixels = 4500; // 100 x 45 = 4500
-        
-        // Criar a grade de pixels
-        function criarGrid() {
-            grid.innerHTML = ""; // Limpa a grade
+        const colorPicker = document.getElementById("colorPicker");
+        const gridSizeSelect = document.getElementById("gridSize");
+        const newGridBtn = document.getElementById("newGridBtn");
+        const resetBtn = document.getElementById("resetBtn");
+
+        // Variáveis de controle
+        let isDrawing = false;
+        let currentColor = colorPicker.value;
+
+        // Quando o usuário escolher uma cor nova
+        colorPicker.addEventListener("change", (e) => {
+            currentColor = e.target.value;
+        });
+
+        // Função que cria a grade de pixels
+        function criarGrid(tamanho = 32) {
+            grid.innerHTML = ""; // Limpa tudo
+            grid.style.gridTemplateColumns = `repeat(${tamanho}, 15px)`;
+            
+            const totalPixels = tamanho * tamanho;
             
             for (let i = 0; i < totalPixels; i++) {
                 const pixel = document.createElement("div");
                 pixel.className = "pixel";
-                pixel.style.backgroundColor = cores[0]; // Começa com branco
-                pixel.setAttribute('data-pos', '0'); // Posição inicial no array
                 
-                // Adiciona evento de clique para mudar a cor
-                pixel.addEventListener('click', function() {
-                    let pos = parseInt(this.getAttribute('data-pos'));
-                    pos = (pos + 1) % cores.length; // Avança para próxima cor
-                    this.style.backgroundColor = cores[pos];
-                    this.setAttribute('data-pos', pos.toString());
+                // Quando clicar no pixel
+                pixel.addEventListener("mousedown", (e) => {
+                    e.preventDefault();
+                    isDrawing = true;
+                    pixel.style.backgroundColor = currentColor;
+                });
+                
+                // Quando arrastar sobre o pixel
+                pixel.addEventListener("mouseenter", () => {
+                    if (isDrawing) {
+                        pixel.style.backgroundColor = currentColor;
+                    }
                 });
                 
                 grid.appendChild(pixel);
             }
         }
-        
-        // Função para resetar a grade
-        function resetGrid() {
-            const pixels = document.querySelectorAll('.pixel');
+
+        // Para de desenhar quando soltar o mouse
+        document.addEventListener("mouseup", () => {
+            isDrawing = false;
+        });
+
+        // Botão de limpar
+        resetBtn.addEventListener("click", () => {
+            const pixels = document.querySelectorAll(".pixel");
             pixels.forEach(pixel => {
-                pixel.style.backgroundColor = cores[0];
-                pixel.setAttribute('data-pos', '0');
+                pixel.style.backgroundColor = "white";
             });
-        }
-        
-        // Inicializar a grade quando a página carregar
-        document.addEventListener('DOMContentLoaded', criarGrid);
-        
-        // Configurar botão de reset
-        resetButton.addEventListener('click', resetGrid);
+        });
+
+        // Botão de aplicar nova grade
+        newGridBtn.addEventListener("click", () => {
+            const tamanho = parseInt(gridSizeSelect.value);
+            criarGrid(tamanho);
+        });
+
+        // Cria a grade quando a página carregar
+        criarGrid(32);
     </script>
 </body>
 </html>
