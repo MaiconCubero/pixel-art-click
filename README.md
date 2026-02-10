@@ -1,49 +1,88 @@
-## Pixel Art Click 🎨
- 
- Projeto simples para desenhar em pixels usando cliques do mouse.
- 
--
+# Pixel Art Click 🎨
 
-## Ideia
- 
- Este projeto nasceu como um experimento durante um período ocioso de trabalho
--
- e foi evoluindo em etapas, aumentando a quantidade de pixels e cores disponíveis.
- 
-## Como funciona
- 
-- Cada pixel é clicável
-- A cada clique, a cor do pixel muda
-- Um botão permite resetar todo o desenho
- 
-## Como funciona
--
-- Cada pixel é clicável
--
-- A cada clique, a cor do pixel muda
-## Tecnologias usadas
- 
-- Um botão permite resetar todo o desenho
-- HTML
-- CSS
+Pixel Art Click é um projeto simples de desenho em pixels, desenvolvido em HTML, CSS e JavaScript puro, onde o usuário pode criar artes pixeladas diretamente no navegador.
+
+O projeto começou como um experimento durante um período ocioso de trabalho e foi evoluindo gradualmente, acompanhando o aprendizado e refinamento do código.
+
+---
+
+## Ideia do Projeto ☣️
+
+A ideia inicial era criar uma grade de pixels clicáveis para explorar conceitos básicos como:
+
+- Manipulação do DOM
+- Eventos de mouse
+- Grid layout com CSS
+- Lógica em JavaScript Vanilla
+
+Com o tempo, o projeto ganhou novas funcionalidades e se tornou uma pequena ferramenta de pixel art.
+
+---
+
+## Funcionalidades Atuais
+
+-  Seleção manual de cor
+-  Escolha do tamanho da grade:
+  - 16 x 16
+  - 32 x 32 (padrão)
+  - 48 x 48
+  - 100 x 48
+-  Desenho com clique e arrastar
+-  Botão para aplicar uma nova grade
+-  Botão para limpar todo o desenho
+-  Interface simples e intuitiva
+
+---
+
+## Tecnologias Utilizadas
+
+- HTML5
+- CSS3
 - JavaScript (Vanilla)
- 
-## Alterações recentes
- 
-- Removido o bloco `<style>` do `index.html`.
-- Estilos centralizados no `css/style.css` (`body`, `#grid`, `.pixel`, `button`).
-- Correção da formatação Markdown do próprio README.
- 
-## Tecnologias usadas
--
-- HTML
--
-- CSS
--
-- JavaScript (Vanilla)
--
--
--
-## ▶️ Como executar
- 
- Abra o arquivo `index.html` em qualquer navegador.
+
+Sem bibliotecas externas.
+
+---
+
+## ▶️ Como Executar o Projeto
+
+1. Clone o repositório ou baixe os arquivos
+2. Abra o arquivo `index.html` em qualquer navegador moderno
+3. Escolha a cor, o tamanho da grade e comece a desenhar
+
+---
+
+## Evolução do Projeto
+
+- **Versão inicial**
+  - Grid fixo com milhares de pixels
+  - Cores alternando a cada clique
+  - Botão de reset
+  - Código todo em um único arquivo HTML
+
+- **Refinamentos**
+  - Separação de HTML, CSS e JavaScript
+  - Organização do código
+  - Melhoria na legibilidade
+
+- **Versão atual**
+  - Seletor de cores
+  - Grades dinâmicas
+  - Desenho com clique e arraste
+  - Interface mais amigável
+
+---
+
+## Próximos Passos (Ideias)
+
+- Exportar o desenho como imagem (PNG)
+- Salvar e carregar desenhos
+- Paleta de cores personalizada
+- Ajuste dinâmico do tamanho do pixel
+- Suporte a mobile/touch
+
+---
+
+## 📌 Observações
+
+Este projeto tem fins educacionais e foi criado como parte do processo de aprendizado em JavaScript e manipulação de interface no navegador.
