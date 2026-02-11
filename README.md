@@ -81,7 +81,8 @@ Sem bibliotecas externas.
 - Salvar e carregar desenhos
 - Paleta de cores personalizada✅ aplicado
 - Ajuste dinâmico do tamanho do pixel
-- Suporte a mobile/touch
+- Implementar animção -frame-by-frame
+- Implementar conversão de imagem em pixels
 
 ---
 
